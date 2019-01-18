@@ -1,6 +1,6 @@
 # Adventure Game
 
-## A simple but fun adventure game that allows you to choose your destiny!
+A simple but fun adventure game that allows you to choose your destiny!
 
 ## Getting Started
 
