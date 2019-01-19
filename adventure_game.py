@@ -146,7 +146,6 @@ def main():
         'effective) dagger.')
 
     # Keep track of visits
-    house_visit = False
     cave_visit = False
 
     # Create a placeholder for the weapon
