@@ -8,16 +8,18 @@ import os
 def menu():
     while True:
         action = input('Would you like to play again (y/n)')
-        if len(action) > 1:
-            print('Enter (y/n)')
-            continue
-        elif len(action) == 1 and action.lower() == 'n':
+
+        if len(action) == 1 and action.lower() == 'n':
             print('Thanks for playing!')
             sys.exit()
         elif len(action) == 1 and action.lower() == 'y':
             print_pause('Nice! Restarting the game..')
             os.system('cls||clear')
             main()
+        else:
+            print('Enter (y/n)')
+            continue
+
 
 
 # Ask question and verify input
@@ -45,12 +47,27 @@ def print_pause(text):
     time.sleep(2)
 
 
+class Weapon:
+
+    WEAPONS = {
+        'sword': 'magical Sword of Ogoroth',
+        'axe': 'mighty Golden Axe',
+        'flamethrower': 'scorching Flamethrower of Nukem'
+    }
+
+    weapon = random.choice(list(WEAPONS))
+
+    def __init__(self, name = weapon, description = WEAPONS[weapon]):
+        self.name = name
+        self.description = description
+
+
 # Fight or Flight
-def fight_or_flight(sword, monster):
+def fight_or_flight(cave_visit, weapon, monster):
     print('\n')
     option = ask('Would you like to (1) fight or (2) run away?', [1, 2])
     print('\n')
-    if sword and option == 1:
+    if cave_visit and option == 1:
         print_pause(
             'As the {} moves to attack, you unsheath your new sword.'
             .format(monster))
@@ -64,7 +81,7 @@ def fight_or_flight(sword, monster):
             'You have rid the town of the {}. You are '
             'victorious!'.format(monster))
         menu()
-    elif not sword and option == 1:
+    elif not cave_visit and option == 1:
         print_pause('you do your best...')
         print_pause('but your dagger is no match for the {}.'.format(monster))
         print_pause('You have been defeated!')
@@ -77,15 +94,19 @@ def fight_or_flight(sword, monster):
 
 # Places
 def cave(visit):
+
+    my_weapon = Weapon()
+
     print_pause('You peer cautiously into the cave.')
     if not visit:
         print_pause('It turns out to be only a very small cave.')
         print_pause('Your eye catches a glint of metal behind a rock.')
-        print_pause('You have found the magical Sword of Ogoroth!')
+        print_pause('You have found the {}!'.format(my_weapon.description))
         print_pause(
             'You discard your silly old dagger and take the '
-            'sword with you.')
+            '{} with you.'.format(my_weapon.name))
         print_pause('You walk back out to the field.')
+        return my_weapon
     else:
         print_pause(
             'You\'ve been here before, and gotten all the good '
@@ -93,23 +114,25 @@ def cave(visit):
         print_pause('You walk back out to the field.')
 
 
-def house(visit, sword, monster):
+
+def house(visit, cave_visit, weapon, monster):
     print_pause('You approach the door of the house.')
     print_pause(
         'You are about to knock when the door opens and '
         'out steps a {}.'.format(monster))
     print_pause('Eep! This is the {}\'s house!'.format(monster))
     print_pause('The {} attacks you!'.format(monster))
-    if not sword:
+    if not cave_visit:
         print_pause(
             'You feel a bit under-prepared for this, '
             'what with only having a tiny dagger.')
-    fight_or_flight(sword, monster)
+    fight_or_flight(cave_visit, weapon, monster)
 
 
 # Main program
 def main():
     monsters = ['gorgon', 'pirate', 'dragon', 'troll']
+
     monster = random.choice(monsters)
     print_pause(
         'You find yourself standing in an open field, filled with '
@@ -135,10 +158,10 @@ def main():
         print('\n')
 
         if option == 1:
-            house(house_visit, cave_visit, monster)
+            house(house_visit, weapon, cave_visit, monster)
             house_visit = True
         elif option == 2:
-            cave(cave_visit)
+            weapon = cave(cave_visit)
             cave_visit = True
         else:
             print('that doesn\'t seem like a valid option')
