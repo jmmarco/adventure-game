@@ -70,11 +70,11 @@ def fight_or_flight(cave_visit, weapon, monster):
     print('\n')
     if cave_visit and option == 1:
         print_pause(
-            'As the {} moves to attack, you unsheath your new sword.'
-            .format(monster))
+            'As the {} moves to attack, you unsheath your new {}.'
+            .format(monster, weapon.name))
         print_pause(
-            'The Sword of Ogoroth shines brightly in your hand as you '
-            'brace yourself for the attack.')
+            'The {} shines brightly in your hand as you '
+            'brace yourself for the attack.'.format(weapon.description))
         print_pause(
             'But the {} takes one look at your shiny new toy '
             'and runs away!'.format(monster))
@@ -115,7 +115,7 @@ def cave(visit):
         print_pause('You walk back out to the field.')
 
 
-def house(visit, cave_visit, weapon, monster):
+def house(cave_visit, weapon, monster):
     print_pause('You approach the door of the house.')
     print_pause(
         'You are about to knock when the door opens and '
@@ -126,6 +126,8 @@ def house(visit, cave_visit, weapon, monster):
         print_pause(
             'You feel a bit under-prepared for this, '
             'what with only having a tiny dagger.')
+
+    print('Weapon inside house is: ', weapon)
     fight_or_flight(cave_visit, weapon, monster)
 
 
@@ -149,6 +151,10 @@ def main():
     # Keep track of visits
     house_visit = False
     cave_visit = False
+
+    # Create a placeholder for the weapon
+    weapon = None
+
     while True:
         # Present options and ask user what to do
         print('\n')
@@ -158,8 +164,8 @@ def main():
         print('\n')
 
         if option == 1:
-            house(house_visit, weapon, cave_visit, monster)
-            house_visit = True
+            print('weapon is :', weapon)
+            house(cave_visit, weapon, monster)
         elif option == 2:
             weapon = cave(cave_visit)
             cave_visit = True
