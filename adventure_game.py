@@ -21,7 +21,6 @@ def menu():
             continue
 
 
-
 # Ask question and verify input
 def ask(question, options):
     while True:
@@ -47,8 +46,10 @@ def print_pause(text):
     time.sleep(2)
 
 
+# Randomly choose weapon and description
 class Weapon:
 
+    """ Provides a way to randomly choose a weapon and description """
     WEAPONS = {
         'sword': 'magical Sword of Ogoroth',
         'axe': 'mighty Golden Axe',
@@ -57,7 +58,7 @@ class Weapon:
 
     weapon = random.choice(list(WEAPONS))
 
-    def __init__(self, name = weapon, description = WEAPONS[weapon]):
+    def __init__(self, name=weapon, description=WEAPONS[weapon]):
         self.name = name
         self.description = description
 
@@ -112,7 +113,6 @@ def cave(visit):
             'You\'ve been here before, and gotten all the good '
             'stuff. It\'s just an empty cave now.')
         print_pause('You walk back out to the field.')
-
 
 
 def house(visit, cave_visit, weapon, monster):
