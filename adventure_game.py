@@ -168,4 +168,5 @@ def main():
             print('that doesn\'t seem like a valid option')
 
 
-main()
+if __name__ == "__main__":
+    main()
