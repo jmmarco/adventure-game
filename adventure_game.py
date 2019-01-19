@@ -21,13 +21,12 @@ def menu():
             continue
 
 
-# Ask question and verify input
+# Verify user input
 def ask(question, options):
     while True:
         option = (input(question))
         try:
             option = int(option)
-            # Check if option is available
             if option in set(options):
                 break
             else:
@@ -39,13 +38,12 @@ def ask(question, options):
     return option
 
 
-# Print pause text
+# Print text with delay for better UX
 def print_pause(text):
     print(text)
     time.sleep(2)
 
 
-# Randomly choose weapon and description
 class Weapon:
 
     """ Provides a way to randomly choose a weapon and description """
@@ -62,7 +60,6 @@ class Weapon:
         self.description = description
 
 
-# Fight or Flight
 def fight_or_flight(cave_visit, weapon, monster):
     print('\n')
     option = ask('Would you like to (1) fight or (2) run away?', [1, 2])
@@ -128,7 +125,6 @@ def house(cave_visit, weapon, monster):
     fight_or_flight(cave_visit, weapon, monster)
 
 
-# Main program
 def main():
     monsters = ['gorgon', 'pirate', 'dragon', 'troll']
 
@@ -148,7 +144,7 @@ def main():
     # Keep track of visits
     cave_visit = False
 
-    # Create a placeholder for the weapon
+    # Track weapon status
     weapon = None
 
     while True:
