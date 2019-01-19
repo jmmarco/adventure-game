@@ -69,21 +69,21 @@ def fight_or_flight(cave_visit, weapon, monster):
     print('\n')
     if cave_visit and option == 1:
         print_pause(
-            'As the {} moves to attack, you unsheath your new {}.'
-            .format(monster, weapon.name))
+            f'As the {monster} moves to attack, '
+            f'you unsheath your new {weapon.name}.')
         print_pause(
-            'The {} shines brightly in your hand as you '
-            'brace yourself for the attack.'.format(weapon.description))
+            f'The {weapon.description} shines brightly in your hand as you '
+            'brace yourself for the attack.')
         print_pause(
-            'But the {} takes one look at your shiny new toy '
-            'and runs away!'.format(monster))
+            f'But the {monster} takes one look at your shiny new toy '
+            'and runs away!')
         print_pause(
-            'You have rid the town of the {}. You are '
-            'victorious!'.format(monster))
+            f'You have rid the town of the {monster}. You are '
+            'victorious!')
         menu()
     elif not cave_visit and option == 1:
         print_pause('you do your best...')
-        print_pause('but your dagger is no match for the {}.'.format(monster))
+        print_pause(f'but your dagger is no match for the {monster}.')
         print_pause('You have been defeated!')
         menu()
     else:
@@ -101,10 +101,10 @@ def cave(visit):
     if not visit:
         print_pause('It turns out to be only a very small cave.')
         print_pause('Your eye catches a glint of metal behind a rock.')
-        print_pause('You have found the {}!'.format(my_weapon.description))
+        print_pause(f'You have found the {my_weapon.description}!')
         print_pause(
             'You discard your silly old dagger and take the '
-            '{} with you.'.format(my_weapon.name))
+            f'{my_weapon.name} with you.')
         print_pause('You walk back out to the field.')
         return my_weapon
     else:
@@ -118,9 +118,9 @@ def house(cave_visit, weapon, monster):
     print_pause('You approach the door of the house.')
     print_pause(
         'You are about to knock when the door opens and '
-        'out steps a {}.'.format(monster))
-    print_pause('Eep! This is the {}\'s house!'.format(monster))
-    print_pause('The {} attacks you!'.format(monster))
+        f'out steps a {monster}.')
+    print_pause(f'Eep! This is the {monster}\'s house!')
+    print_pause(f'The {monster} attacks you!')
     if not cave_visit:
         print_pause(
             'You feel a bit under-prepared for this, '
@@ -137,8 +137,8 @@ def main():
         'You find yourself standing in an open field, filled with '
         'grass and yellow wildflowers.')
     print_pause(
-        'Rumor has it that a {} is somewhere around here, '
-        'and has been terrifying the nearby village.'.format(monster))
+        f'Rumor has it that a {monster} is somewhere around here, '
+        'and has been terrifying the nearby village.')
     print_pause('In front of you is a house.')
     print_pause('To your right is a dark cave.')
     print_pause(
