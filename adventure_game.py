@@ -25,7 +25,6 @@ def menu():
 def ask(question, options):
     while True:
         option = (input(question))
-        print(option)
         try:
             option = int(option)
             # Check if option is available
@@ -126,8 +125,6 @@ def house(cave_visit, weapon, monster):
         print_pause(
             'You feel a bit under-prepared for this, '
             'what with only having a tiny dagger.')
-
-    print('Weapon inside house is: ', weapon)
     fight_or_flight(cave_visit, weapon, monster)
 
 
@@ -164,7 +161,6 @@ def main():
         print('\n')
 
         if option == 1:
-            print('weapon is :', weapon)
             house(cave_visit, weapon, monster)
         elif option == 2:
             weapon = cave(cave_visit)
