@@ -1,36 +1,35 @@
 import time
 import random
-import sys
 import os
 
 
 # Game Control
 def menu():
     while True:
-        action = input('Would you like to play again (y/n)')
+        action = input('Would you like to play again (y/n)').lower()
 
-        if len(action) == 1 and action.lower() == 'n':
+        if action == 'n':
             print('Thanks for playing!')
-            sys.exit()
-        elif len(action) == 1 and action.lower() == 'y':
+            exit()
+        elif action == 'y':
             print_pause('Nice! Restarting the game..')
             os.system('cls||clear')
             main()
         else:
-            print('Enter (y/n)')
+            print('Sorry I didn\'t understand that. Please enter (y/n)')
             continue
 
 
 # Verify user input
 def ask(question, options):
     while True:
-        option = (input(question))
+        option = input(question)
         try:
             option = int(option)
             if option in set(options):
                 break
             else:
-                print('That option is not available')
+                print('That option is not available. Try again!')
                 continue
         except ValueError:
             print('That doesn\'t seem to be a number')
@@ -41,7 +40,7 @@ def ask(question, options):
 # Print text with delay for better UX
 def print_pause(text):
     print(text)
-    time.sleep(2)
+    time.sleep(0.1)
 
 
 class Weapon:
@@ -62,7 +61,7 @@ class Weapon:
 
 def fight_or_flight(cave_visit, weapon, monster):
     print('\n')
-    option = ask('Would you like to (1) fight or (2) run away?', [1, 2])
+    option = ask('Would you like to:\n(1) fight or (2) run away?', [1, 2])
     print('\n')
     if cave_visit and option == 1:
         print_pause(
@@ -146,22 +145,21 @@ def main():
 
     # Track weapon status
     weapon = None
+    # Present options and ask user what to do
+    print('\n')
+    print('============================================')
+    print_pause('Enter (1) to knock on the door of the house.')
+    print_pause('Enter (2) to peer into the cave.')
+    print('============================================')
+    print('\n')
+    option = ask('What would you like to do?: ', [1, 2])
+    print('\n')
 
-    while True:
-        # Present options and ask user what to do
-        print('\n')
-        print_pause('Enter (1) to knock on the door of the house.')
-        print_pause('Enter (2) to peer into the cave.')
-        option = ask('What would you like to do?: ', [1, 2])
-        print('\n')
-
-        if option == 1:
-            house(cave_visit, weapon, monster)
-        elif option == 2:
-            weapon = cave(cave_visit)
-            cave_visit = True
-        else:
-            print('that doesn\'t seem like a valid option')
+    if option == 1:
+        house(cave_visit, weapon, monster)
+    elif option == 2:
+        weapon = cave(cave_visit)
+        cave_visit = True
 
 
 if __name__ == "__main__":
